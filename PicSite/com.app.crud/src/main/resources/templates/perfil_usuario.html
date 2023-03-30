@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/css/perfil_usuario.css}" rel="stylesheet" href="../static/css/perfil_usuario.css">
     <title>Perfil de usuario</title>
-    <link rel="icon" href="../static/multimedia/icons/PicSite backremoved.png">
+	<link th:href="@{/multimedia/icons/PicSite backremoved.png}" rel="icon" href="../static/multimedia/icons/PicSite backremoved.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -41,12 +41,53 @@
                         </div>
                     </ul>
                 </li>
-                <a th:href="@{/loginusu}"><li class="opc opc-log">Iniciar sesion</li></a>
-                <a th:href="@{/registrousu}"><li class="opc opc-rgy">Registrarme</li></a>
+                <a th:href="@{/loginusu}" th:if="${sinLogYRy}">
+					<li class="opc opc-log">Iniciar sesión</li>
+				</a>
+				<a th:href="@{/registrousu}" th:if="${sinLogYRy}">
+					<li class="opc opc-rgy">Registrarme</li>
+				</a>
                 <div class="img__usu-container" th:if="${mostrarElemento}">
-					<a th:href="@{/home/perfil}">
-						<li class="opc opc-usu opc__usu-img"><img th:src="@{'/uploads/'+${imgusu.foto}}"></li>
-					</a>
+
+					<!--th:if="imgusu != null" th:src="@{'/uploads/'+${imgusu.nombreImg}}"-->
+					<li class="opc opc-usu opc__usu-img">
+						<img th:src="@{'/uploads/'+${imgusu.foto}}">
+						<div>
+							<div class="menu-usuario">
+								<div class="nombre-usuario">
+									<p th:text="${objusu.nombre}"></p>
+								</div>
+								<div class="linea"></div>
+								<a th:href="@{/perfil}">
+									<div class="perfil-usuario">
+										Tu perfil
+									</div>
+								</a>
+								<a th:href="@{/cerrarsesion}">
+									<div class="cerrar-sesion">
+										Cerrar sesión
+									</div>
+								</a>
+								<div class="linea"></div>
+								<div class="menu__usu-links">
+									<div class="facebook">
+										<a href="https://www.facebook.com/profile.php?id=100090251656509"
+											target="_blank" class="a-face"><img src="../multimedia/icons/Facebook.ico"
+												class="img-redes"></a>
+									</div>
+									<div class="instagram">
+										<a href="https://www.instagram.com/piccsite/?hl=es" target="_blank"
+											class="a-insta"><img src="../multimedia/icons/Instagram.ico"
+												class="img-redes"></a>
+									</div>
+									<div class="twitter">
+										<a href="https://twitter.com/pic_site" target="_blank" class="a-twit"><img
+												src="../multimedia/icons/Twitter.ico" class="img-redes"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
 				</div>
             </ul>
         </nav>

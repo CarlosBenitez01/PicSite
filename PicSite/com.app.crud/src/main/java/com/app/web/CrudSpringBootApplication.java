@@ -5,9 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.app.web.entidad.Estudiante;
 import com.app.web.entidad.Usuario;
-import com.app.web.repositorio.EstudianteRepositorio;
 import com.app.web.repositorio.UsuarioRepositorio;
 
 import finalc.UsuarioConst;
@@ -19,10 +17,7 @@ public class CrudSpringBootApplication implements CommandLineRunner{
 	public static void main(String[] args) {
 		SpringApplication.run(CrudSpringBootApplication.class, args);
 
-	}
-	
-	@Autowired
-	private EstudianteRepositorio repositorio;
+	}	
 	
 	@Autowired
 	private UsuarioRepositorio repositorioUsu;

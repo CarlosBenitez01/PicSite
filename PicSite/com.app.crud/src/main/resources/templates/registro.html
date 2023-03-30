@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{css/registro.css}"  rel="stylesheet" href="../static/css/registro.css">
     <title>Registro</title>
-    <link rel="icon" href="../static/multimedia/icons/PicSite backremoved.png">
+    <link th:href="@{/multimedia/icons/PicSite backremoved.png}" rel="icon" href="../static/multimedia/icons/PicSite backremoved.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
             <ul class="menu__opciones">
                 <li class="opc"><a class="menu__opciones-li white" th:href="@{/}">Menu principal</a></li>
                 <li class="menu__opciones-a">
-                    <a th:href="@{/loginusu}"><div class="opc white">Iniciar sesion</div></a>
+                    <a th:href="@{/loginusu}"><div class="opc white">Iniciar sesión</div></a>
                 </li>
             </ul>
         </nav>

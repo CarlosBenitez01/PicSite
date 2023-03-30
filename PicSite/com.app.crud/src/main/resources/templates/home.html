@@ -6,8 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link th:href="@{/css/home.css}" rel="stylesheet" href="../static/css/home.css">
-	<title>Conoce a cerca de PicSite</title>
-	<link rel="icon" href="../static/multimedia/icons/PicSite backremoved.png">
+	<title>PicSite - inicio</title>
+	<link th:href="@{/multimedia/icons/PicSite backremoved.png}" rel="icon" href="../static/multimedia/icons/PicSite backremoved.png">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -39,17 +39,53 @@
 						</div>
 					</ul>
 				</li>
-				<a th:href="@{/loginusu}">
-					<li class="opc opc-log">Iniciar sesion</li>
+				<a th:href="@{/loginusu}" th:if="${sinLogYRy}">
+					<li class="opc opc-log">Iniciar sesión</li>
 				</a>
-				<a th:href="@{/registrousu}">
+				<a th:href="@{/registrousu}" th:if="${sinLogYRy}">
 					<li class="opc opc-rgy">Registrarme</li>
 				</a>
 				<div class="img__usu-container" th:if="${mostrarElemento}">
-					<a th:href="@{/home/perfil}">
-						<!--th:if="imgusu != null" th:src="@{'/uploads/'+${imgusu.nombreImg}}"-->
-						<li class="opc opc-usu opc__usu-img"><img th:src="@{'/uploads/'+${imgusu.foto}}"></li>
-					</a>
+
+					<!--th:if="imgusu != null" th:src="@{'/uploads/'+${imgusu.nombreImg}}"-->
+					<li class="opc opc-usu opc__usu-img">
+						<img th:src="@{'/uploads/'+${imgusu.foto}}">
+						<div>
+							<div class="menu-usuario">
+								<div class="nombre-usuario">
+									<p th:text="${objusu.nombre}"></p>
+								</div>
+								<div class="linea"></div>
+								<a th:href="@{/perfil}">
+									<div class="perfil-usuario">
+										Tu perfil
+									</div>
+								</a>
+								<a th:href="@{/cerrarsesion}">
+									<div class="cerrar-sesion">
+										Cerrar sesión
+									</div>
+								</a>
+								<div class="linea"></div>
+								<div class="menu__usu-links">
+									<div class="facebook">
+										<a href="https://www.facebook.com/profile.php?id=100090251656509"
+											target="_blank" class="a-face"><img src="../multimedia/icons/Facebook.ico"
+												class="img-redes"></a>
+									</div>
+									<div class="instagram">
+										<a href="https://www.instagram.com/piccsite/?hl=es" target="_blank"
+											class="a-insta"><img src="../multimedia/icons/Instagram.ico"
+												class="img-redes"></a>
+									</div>
+									<div class="twitter">
+										<a href="https://twitter.com/pic_site" target="_blank" class="a-twit"><img
+												src="../multimedia/icons/Twitter.ico" class="img-redes"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
 				</div>
 			</ul>
 		</nav>
@@ -80,10 +116,14 @@
 		</div>
 		<div class="menu__opciones-container">
 			<div class="menu__opciones-content">
-				<li class="opcion"><a href=""><img class="filterImg2" src="../multimedia/icons/ilustaciones.ico">Ilustaciones</a></li>
-				<li class="opcion"><a href=""><img class="filterImg2" src="../multimedia/icons/wallpaper.ico">Wallpapers</a></li>
-				<li class="opcion"><a href=""><img class="filterImg2" src="../multimedia/icons/camara.ico">Fotos</a></li>
-				<li class="opcion"><a href=""><img class="filterImg2" src="../multimedia/icons/vector.ico">Vectores</a></li>
+				<li class="opcion"><a href=""><img class="filterImg2"
+							src="../multimedia/icons/ilustaciones.ico">Ilustaciones</a></li>
+				<li class="opcion"><a href=""><img class="filterImg2"
+							src="../multimedia/icons/wallpaper.ico">Wallpapers</a></li>
+				<li class="opcion"><a href=""><img class="filterImg2" src="../multimedia/icons/camara.ico">Fotos</a>
+				</li>
+				<li class="opcion"><a href=""><img class="filterImg2" src="../multimedia/icons/vector.ico">Vectores</a>
+				</li>
 				<li class="opcion"><a href=""><img class="filterImg2" src="../multimedia/icons/gif.ico">Gifs</a></li>
 			</div>
 		</div>
@@ -91,29 +131,33 @@
 
 			<div class="galeria-column">
 				<div th:each="imagenObj : ${galeriaList1}">
-					<div class="card"><img th:src="@{'/uploads/'+${imagenObj.nombreImg}}" th:alt="${imagenObj.nombreImg}" class="card-img"></div>	
+					<div class="card"><img th:src="@{'/uploads/'+${imagenObj.nombreImg}}"
+							th:alt="${imagenObj.nombreImg}" class="card-img"></div>
 				</div>
-				
+
 			</div>
 
 			<div class="galeria-column">
 				<div th:each="imagenObj1 : ${galeriaList2}">
-					<div class="card"><img th:src="@{'/uploads/'+${imagenObj1.nombreImg}}" th:alt="${imagenObj1.nombreImg}" class="card-img"></div>
+					<div class="card"><img th:src="@{'/uploads/'+${imagenObj1.nombreImg}}"
+							th:alt="${imagenObj1.nombreImg}" class="card-img"></div>
 				</div>
 			</div>
 
 			<div class="galeria-column">
 				<div th:each="imagenObj2 : ${galeriaList3}">
-					<div class="card"><img th:src="@{'/uploads/'+${imagenObj2.nombreImg}}" th:alt="${imagenObj2.nombreImg}" class="card-img"></div>	
+					<div class="card"><img th:src="@{'/uploads/'+${imagenObj2.nombreImg}}"
+							th:alt="${imagenObj2.nombreImg}" class="card-img"></div>
 				</div>
 			</div>
 
 			<div class="galeria-column">
 				<div th:each="imagenObj3 : ${galeriaList4}">
-						<div class="card"><img th:src="@{'/uploads/'+${imagenObj3.nombreImg}}" th:alt="${imagenObj3.nombreImg}" class="card-img"></div>
+					<div class="card"><img th:src="@{'/uploads/'+${imagenObj3.nombreImg}}"
+							th:alt="${imagenObj3.nombreImg}" class="card-img"></div>
 				</div>
 			</div>
-			
+
 		</div>
 		<div class="btn-inicio">
 			<a href="#inicio">
@@ -162,7 +206,8 @@
 				<div class="col nosotros">
 					<h4 class="col-tittle">Conócenos</h4>
 					<nav class="footer__opc-container">
-						<li class="footer-opc"><a th:href="@{/conocenos/nosotros}" class="footer-a">A cerca de nosotros</a></li>
+						<li class="footer-opc"><a th:href="@{/conocenos/nosotros}" class="footer-a">A cerca de
+								nosotros</a></li>
 					</nav>
 				</div>
 			</div>

@@ -65,8 +65,6 @@ public class UsuarioControlador {
 		return "login";
 	}
 	
-	//ArrayList<Usuario> usuarioActual = new ArrayList<>();
-	//ArrayList<UsuarioConst> usuarioActual = new ArrayList<>();
 	public Usuario usuarioActual = new Usuario();
 	//Resivimos por Post los datos en un objeto de estudiantes y los guardamos con el servicio de JpaRepository
 	@PostMapping({"/login"})
@@ -104,28 +102,6 @@ public class UsuarioControlador {
 			
 	}
 	
-	/*
-	 * Metodo para repartir el contenido del arreglo original
-	int n = (int) Math.ceil((double) listaOriginal.size() / 4);
-
-	for (int i = 0; i < listaOriginal.size(); i++) {
-	    int index = (i / n) % 4;
-	    switch (index) {
-	        case 0:
-	            lista1.add(listaOriginal.get(i));
-	            break;
-	        case 1:
-	            lista2.add(listaOriginal.get(i));
-	            break;
-	        case 2:
-	            lista3.add(listaOriginal.get(i));
-	            break;
-	        case 3:
-	            lista4.add(listaOriginal.get(i));
-	            break;
-	    }
-	}
-	*/
 	
 	public void clearArrays() {
 		imgListCol1.clear();
@@ -244,15 +220,22 @@ public class UsuarioControlador {
 		galeriaHome();
 		
 		boolean mostrar = false;
+		boolean noMostrarLoginYRegistro = false;
 		if(UsuarioConst.hayusu) {
 			mostrar = true;
+			model.addAttribute("sinLogYRy", noMostrarLoginYRegistro);
+		}else {
+			noMostrarLoginYRegistro = true;
+			model.addAttribute("sinLogYRy", noMostrarLoginYRegistro);
 		}
 		
 		if(mostrar) {
 			model.addAttribute("mostrarElemento", mostrar);
 			model.addAttribute("imgusu", usuImgParaIcono());
+			model.addAttribute("objusu", servicio.obtenerUsuarioPorId(UsuarioConst.id));
 		}
 		
+				
 		model.addAttribute("galeriaList1", imgListCol1);
 		model.addAttribute("galeriaList2", imgListCol2);
 		model.addAttribute("galeriaList3", imgListCol3);
@@ -266,16 +249,31 @@ public class UsuarioControlador {
 		return "home";
 	}
 	
+	@GetMapping("/cerrarsesion")
+	public String cerrarSesion() {
+		UsuarioConst.id = null;
+		UsuarioConst.nombre = null;
+		UsuarioConst.email = null;
+		UsuarioConst.hayusu = false;
+		return "redirect:/";
+	}
+	
 	@GetMapping({"/galeriaredirect", "/g"})
 	public String galeriaRedirect(Model model) {
 		boolean mostrar = false;
+		boolean noMostrarLoginYRegistro = false;
 		if(UsuarioConst.hayusu) {
 			mostrar = true;
+			model.addAttribute("sinLogYRy", noMostrarLoginYRegistro);
+		}else {
+			noMostrarLoginYRegistro = true;
+			model.addAttribute("sinLogYRy", noMostrarLoginYRegistro);
 		}
 		
 		if(mostrar) {
 			model.addAttribute("mostrarElemento", mostrar);
 			model.addAttribute("imgusu", usuImgParaIcono());
+			model.addAttribute("objusu", servicio.obtenerUsuarioPorId(UsuarioConst.id));
 		}
 		return "/galeria";
 	}

@@ -1,5 +1,8 @@
 package com.app.web.entidad;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +21,8 @@ public class Imagenes {
 
 	@Column(name = "nombreImg", nullable = false, length = 200)
     private String nombreImg;
+	
+    private LocalDate dateSubida;
 
     @ManyToOne
     @JoinColumn(name = "id_usuarioFK")
@@ -43,17 +48,27 @@ public class Imagenes {
 		this.usuario = usuario;
 	}
 
-	public Imagenes(Long id_imagen, String nombreImg, Usuario usuario) {
+	public LocalDate getDateSubida() {
+		return dateSubida;
+	}
+
+	public void setDateSubida(LocalDate dateSubida) {
+		this.dateSubida = dateSubida;
+	}
+
+	public Imagenes(Long id_imagen, String nombreImg, LocalDate dateSubida, Usuario usuario) {
 		super();
 		this.id_imagen = id_imagen;
 		this.nombreImg = nombreImg;
 		this.usuario = usuario;
+		this.dateSubida = dateSubida;
 	}
     
-	public Imagenes(String nombreImg, Usuario usuario) {
+	public Imagenes(String nombreImg, LocalDate dateSubida, Usuario usuario) {
 		super();
 		this.nombreImg = nombreImg;
 		this.usuario = usuario;
+		this.dateSubida = dateSubida;
 	}
 	
 	public Imagenes() {
