@@ -9,13 +9,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.app.web.entidad.Filtros;
 import com.app.web.entidad.Imagenes;
 import com.app.web.entidad.Usuario;
+import com.app.web.servicio.FiltroServicio;
 import com.app.web.servicio.ImagenServicio;
 import com.app.web.servicio.UsuarioServicio;
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 import finalc.UsuarioConst;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class UsuarioControlador {
@@ -30,6 +37,9 @@ public class UsuarioControlador {
 	@Autowired
 	private ImagenServicio servicioImg;
 	
+	@Autowired
+	private FiltroServicio servicioFiltro;
+	
 	@GetMapping("/listusu")
 	public String listarUsuarios(Model model) {
 		
@@ -40,6 +50,7 @@ public class UsuarioControlador {
 	
 	@GetMapping({"/registrousu"})
 	public String registroUsuarios(Model model) {
+		filtros.clear();
 		Usuario usuario = new Usuario();
 		
 		model.addAttribute("usuario", usuario);
@@ -58,6 +69,7 @@ public class UsuarioControlador {
 	
 	@GetMapping({"/loginusu"})
 	public String loginUsuarios(Model model) {
+		filtros.clear();
 		Usuario usuario = new Usuario();
 		
 		model.addAttribute("usuario", usuario);
@@ -216,6 +228,7 @@ public class UsuarioControlador {
 	
 	@GetMapping({"/homeredirect", "/"})
 	public String homeRedirect(Model model) {
+		filtros.clear();
 		clearArrays();
 		galeriaHome();
 		
@@ -258,9 +271,375 @@ public class UsuarioControlador {
 		return "redirect:/";
 	}
 	
-	@GetMapping({"/galeriaredirect", "/g"})
+	@PostMapping("/galeria/eliminar-filtro")
+	public String galeriaObtenFiltro(HttpServletRequest request) {
+		String filtroABorrar = request.getParameter("filtro");
+		if(!(filtros.size() == 1)) {
+			filtros.remove(filtroABorrar);
+		}
+		
+		return "redirect:/galeriaredirect";
+	}
+	
+	@GetMapping("/g")
+	public String galeriaObtenFiltro(@RequestParam("opcion") String opcion) {
+		boolean existe = false;
+		for (String filtro : filtros) {
+		    if (opcion.equals(filtro)) {
+		        existe = true;
+		        break; // Salir del bucle si encuentra una coincidencia
+		    }
+		    
+		}
+		
+		if(!existe) {
+			filtros.add(opcion);
+		}
+		System.out.println(opcion);
+		for (String filtro : filtros) {
+		    if (filtro.equals(null)) {
+		        filtros.remove(filtro);
+		        break;
+		    }
+		    
+		}
+		
+		return "redirect:/galeriaredirect";
+	}
+	
+	
+	
+	ArrayList<Imagenes> imgListColGal1 = new ArrayList<>();
+	ArrayList<Imagenes> imgListColGal2 = new ArrayList<>();
+	ArrayList<Imagenes> imgListColGal3 = new ArrayList<>();
+	ArrayList<Imagenes> imgListColGal4 = new ArrayList<>();
+	public void galeriaDistribucion() {
+		//Creando la lista filtrada
+		//Esta variable del controlador es solo para poder tener 2 controladores que pongan todo en false sin necesidad de agregar el id de imagen foranea
+		String n = "";
+		List<Imagenes> todasImg = servicioImg.listarImagenes();
+		List<Filtros> todosFiltros = servicioFiltro.listarRegistrosDeFiltros();
+		List<Imagenes> listaFiltrada = new ArrayList<Imagenes>();
+		
+		Filtros filtroTemporal = new Filtros(n);
+		for(Imagenes img : todasImg) {
+//			Long idfk = 0L;
+			for(Filtros fdb : todosFiltros) {
+				if(img.getId_imagen().equals(fdb.getImagen().getId_imagen())) {
+					for(String filtro : filtros) {
+						//Elimino el contenido del filtro temporal para evitar problema en cada conjunto de filtros
+						filtroTemporal = new Filtros(n);
+						switch (filtro) {
+						case "ilustracion":
+							filtroTemporal.setIlustracion(true);
+							break;
+						case "wallpaper":
+							filtroTemporal.setWallpaper(true);
+							break;
+						case "foto":
+							filtroTemporal.setFoto(true);
+							break;
+						case "vector":
+							filtroTemporal.setVector(true);
+							break;
+						case "gif":
+							filtroTemporal.setGif(true);
+							break;
+						default:
+							System.out.println("Valor de filtro incorrecto");
+							break;
+						}
+
+						switch (filtro) {
+						case "rojo":
+							filtroTemporal.setRojo(true);
+							break;
+						case "naranja":
+							filtroTemporal.setNaranja(true);
+							break;
+						case "amarillo":
+							filtroTemporal.setAmarillo(true);
+							break;
+						case "verde":
+							filtroTemporal.setVerde(true);
+							break;
+						case "celeste":
+							filtroTemporal.setBlanco(true);
+							break;
+						case "azul":
+							filtroTemporal.setAzul(true);
+							break;
+						case "morado":
+							filtroTemporal.setMorado(true);
+							break;
+						case "rosado":
+							filtroTemporal.setRosado(true);
+							break;
+						case "marron":
+							filtroTemporal.setMarron(true);
+							break;
+						case "negro":
+							filtroTemporal.setNegro(true);
+							break;
+						default:
+							System.out.println("Valor de filtro incorrecto");
+							break;
+						}
+
+						switch (filtro) {
+						case "personas":
+							filtroTemporal.setPersonas(true);
+							break;
+						case "animales":
+							filtroTemporal.setAnimales(true);
+							break;
+						case "cocina":
+							filtroTemporal.setCocina(true);
+							break;
+						case "videojuegos":
+							filtroTemporal.setVideojuegos(true);
+							break;
+						case "paisajes":
+							filtroTemporal.setPaisajes(true);
+							break;
+						case "edificios":
+							filtroTemporal.setEdificios(true);
+							break;
+						case "transporte":
+							filtroTemporal.setTransporte(true);
+							break;
+						case "educacion":
+							filtroTemporal.setEducacion(true);
+							break;
+						case "tecnologia":
+							filtroTemporal.setTecnologia(true);
+							break;
+						case "gatos":
+							filtroTemporal.setGatos(true);
+							break;
+						case "perros":
+							filtroTemporal.setPerros(true);
+							break;
+						case "naturaleza":
+							filtroTemporal.setNaturaleza(true);
+							break;
+						case "comida":
+							filtroTemporal.setComida(true);
+							break;
+						default:
+							System.out.println("Valor de filtro incorrecto");
+							break;
+						}
+						
+						if(fdb.getIlustracion().equals(filtroTemporal.getIlustracion())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getWallpaper().equals(filtroTemporal.getWallpaper())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getFoto().equals(filtroTemporal.getFoto())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getVector().equals(filtroTemporal.getVector())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getGif().equals(filtroTemporal.getGif())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getRojo().equals(filtroTemporal.getRojo())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getNaranja().equals(filtroTemporal.getNaranja())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getAmarillo().equals(filtroTemporal.getAmarillo())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getVerde().equals(filtroTemporal.getVerde())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getBlanco().equals(filtroTemporal.getBlanco())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getAzul().equals(filtroTemporal.getAzul())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getMorado().equals(filtroTemporal.getMorado())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getRosado().equals(filtroTemporal.getRosado())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getMarron().equals(filtroTemporal.getMarron())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getNegro().equals(filtroTemporal.getNegro())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getPersonas().equals(filtroTemporal.getPersonas())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getAnimales().equals(filtroTemporal.getAnimales())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+						}else if(fdb.getCocina().equals(filtroTemporal.getCocina())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getVideojuegos().equals(filtroTemporal.getVideojuegos())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getPaisajes().equals(filtroTemporal.getPaisajes())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getEdificios().equals(filtroTemporal.getEdificios())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getTransporte().equals(filtroTemporal.getTransporte())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getEducacion().equals(filtroTemporal.getEducacion())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getTecnologia().equals(filtroTemporal.getTecnologia())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getGatos().equals(filtroTemporal.getGatos())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getPerros().equals(filtroTemporal.getPerros())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getNaturaleza().equals(filtroTemporal.getNaturaleza())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}else if(fdb.getComida().equals(filtroTemporal.getComida())) {
+							if(!listaFiltrada.contains(img)) {
+								listaFiltrada.add(img);
+							}
+							break;
+							
+						}
+					}	
+				}
+			}
+		}
+		
+		//Repartiendo los elementos de la lista filtrada a las 4 listas
+		int tamano = listaFiltrada.size();
+		int tamanoParte = tamano / 4;
+		int tamanoParteAdicional = tamano % 4;
+		
+		for (int i = 0; i < tamano; i++) {
+			Imagenes elementoActual = listaFiltrada.get(i);
+			if (i < tamanoParte + tamanoParteAdicional) {
+				imgListColGal1.add(elementoActual);
+		  	} else if (i < (tamanoParte * 2) + tamanoParteAdicional) {
+		  		imgListColGal2.add(elementoActual);
+		  	} else if (i < (tamanoParte * 3) + tamanoParteAdicional) {
+		  		imgListColGal3.add(elementoActual);
+		  	} else {
+		  		imgListColGal4.add(elementoActual);
+		  	}
+		}
+		
+	}
+	
+	public void limpiarListas() {
+		imgListColGal1.clear();
+		imgListColGal2.clear();
+		imgListColGal3.clear();
+		imgListColGal4.clear();
+	}
+	
+	public static ArrayList<String> filtros = new ArrayList<>(); 
+	//String filtroSeleccionado;
+	@GetMapping("/galeriaredirect")
 	public String galeriaRedirect(Model model) {
+		//limpiarListas();
+		//galeriaDistribucion();
 		boolean mostrar = false;
+		
+		//Mostrar o no los botones de login y registro, depende de si hay una sesion iniciada
 		boolean noMostrarLoginYRegistro = false;
 		if(UsuarioConst.hayusu) {
 			mostrar = true;
@@ -270,18 +649,23 @@ public class UsuarioControlador {
 			model.addAttribute("sinLogYRy", noMostrarLoginYRegistro);
 		}
 		
+		//Mostrar o no el icono de perfil de usuario, depende de si hay una sesion iniciada
 		if(mostrar) {
 			model.addAttribute("mostrarElemento", mostrar);
 			model.addAttribute("imgusu", usuImgParaIcono());
 			model.addAttribute("objusu", servicio.obtenerUsuarioPorId(UsuarioConst.id));
 		}
+		
+		model.addAttribute("filtros", filtros);
+		
+		//Filtrar la galeria
+		
 		return "/galeria";
 	}
 	
-	@GetMapping({"/galeria"})
+	@GetMapping("/galeria")
 	public String galeria() {
-		
 		return "galeria";
+		
 	}
-	
 }

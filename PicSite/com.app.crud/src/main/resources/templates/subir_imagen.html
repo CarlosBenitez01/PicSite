@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
+	<script th:src="@{/js/funciones.js}"></script>
     <header>
         <a id="inicio"></a>
         <nav class="menu__container">
@@ -33,12 +34,12 @@
                     <a class="exp">Explorar</a>
                     <ul>
                         <div class="menu__opciones-submenu1">
-                            <li class="submenu-opc"><a href=""><img class="filterImg" src="../multimedia/icons/ilustaciones.ico">Ilustaciones</a></li>
-                            <li class="submenu-opc"><a href="./fotoPruebaWallpaper.html"><img class="filterImg" src="../multimedia/icons/wallpaper.ico">Wallpapers</a></li>
-                            <li class="submenu-opc"><a href=""><img class="filterImg" src="../multimedia/icons/camara.ico">Fotos</a></li>
-                            <li class="submenu-opc"><a href=""><img class="filterImg" src="../multimedia/icons/vector.ico">Vectores</a></li>
-                            <li class="submenu-opc gif"><a href=""><img class="filterImg" src="../multimedia/icons/gif.ico">Gifs</a></li>
-                        </div>
+							 <li class="submenu-opc"><a data-opcion="ilustracion" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="ilustracion" onclick="enviarOpcionSeleccionada(event)" class="filterImg" src="../multimedia/icons/ilustaciones.ico">Ilustraciones</a></li>
+							 <li class="submenu-opc"><a data-opcion="wallpaper" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="wallpaper" onclick="enviarOpcionSeleccionada(event)" class="filterImg" src="../multimedia/icons/wallpaper.ico">Wallpapers</a></li>
+							 <li class="submenu-opc"><a data-opcion="foto" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="foto" onclick="enviarOpcionSeleccionada(event)" class="filterImg" src="../multimedia/icons/camara.ico">Fotos</a></li>
+							 <li class="submenu-opc"><a data-opcion="vector" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="vector" onclick="enviarOpcionSeleccionada(event)" class="filterImg"  src="../multimedia/icons/vector.ico">Vectores</a></li>
+							 <li class="submenu-opc gif"><a data-opcion="gif" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="gif" onclick="enviarOpcionSeleccionada(event)" class="filterImg" src="../multimedia/icons/gif.ico">Gifs</a></li>
+						</div>
                     </ul>
                 </li>
                 <a th:href="@{/loginusu}" th:if="${sinLogYRy}">
@@ -124,7 +125,7 @@
                         <option value="naranja">Naranja</option>
                         <option value="amarillo">Amarillo</option>
                         <option value="verde">Verde</option>
-                        <option value="celeste">Celeste</option>
+                        <option value="blanco">Blanco</option>
                         <option value="azul">Azul</option>
                         <option value="morado">Morado</option>
                         <option value="rosado">Rosado</option>

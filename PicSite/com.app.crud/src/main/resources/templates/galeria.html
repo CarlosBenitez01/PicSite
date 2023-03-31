@@ -10,8 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link th:href="@{/css/galeria.css}" rel="stylesheet" href="../static/css/galeria.css">
 </head>
 <body>
+	<script th:src="@{/js/funciones.js}"></script>
     <header>
         <a id="inicio"></a>
         <nav class="menu__container">
@@ -33,12 +35,12 @@
                     <a class="exp">Explorar</a>
                     <ul>
                         <div class="menu__opciones-submenu1">
-                            <li class="submenu-opc"><a href=""><img class="filterImg" src="../multimedia/icons/ilustaciones.ico">Ilustaciones</a></li>
-                            <li class="submenu-opc"><a href="./fotoPruebaWallpaper.html"><img class="filterImg" src="../multimedia/icons/wallpaper.ico">Wallpapers</a></li>
-                            <li class="submenu-opc"><a href=""><img class="filterImg" src="../multimedia/icons/camara.ico">Fotos</a></li>
-                            <li class="submenu-opc"><a href=""><img class="filterImg" src="../multimedia/icons/vector.ico">Vectores</a></li>
-                            <li class="submenu-opc gif"><a href=""><img class="filterImg" src="../multimedia/icons/gif.ico">Gifs</a></li>
-                        </div>
+							 <li class="submenu-opc"><a data-opcion="ilustracion" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="ilustracion" onclick="enviarOpcionSeleccionada(event)" class="filterImg" src="../multimedia/icons/ilustaciones.ico">Ilustraciones</a></li>
+							 <li class="submenu-opc"><a data-opcion="wallpaper" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="wallpaper" onclick="enviarOpcionSeleccionada(event)" class="filterImg" src="../multimedia/icons/wallpaper.ico">Wallpapers</a></li>
+							 <li class="submenu-opc"><a data-opcion="foto" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="foto" onclick="enviarOpcionSeleccionada(event)" class="filterImg" src="../multimedia/icons/camara.ico">Fotos</a></li>
+							 <li class="submenu-opc"><a data-opcion="vector" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="vector" onclick="enviarOpcionSeleccionada(event)" class="filterImg"  src="../multimedia/icons/vector.ico">Vectores</a></li>
+							 <li class="submenu-opc gif"><a data-opcion="gif" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="gif" onclick="enviarOpcionSeleccionada(event)" class="filterImg" src="../multimedia/icons/gif.ico">Gifs</a></li>
+						</div>
                     </ul>
                 </li>
                 <a th:href="@{/loginusu}" th:if="${sinLogYRy}">
@@ -58,7 +60,7 @@
 									<p th:text="${objusu.nombre}"></p>
 								</div>
 								<div class="linea"></div>
-								<a th:href="@{/perfil}">
+								<a th:href="@{/cambiarVariable}">
 									<div class="perfil-usuario">
 										Tu perfil
 									</div>
@@ -104,11 +106,11 @@
                             <a>Todas las imágenes<img src="../multimedia/icons/arrow-down.ico" alt="" class="arrow"></a>
                             <ul>
                                 <div class="menu__opciones-submenu1 menu__tipos-submenu">
-                                    <li class="submenu-opc submenu__opc-tipos"><a href=""><img class="filterImg2" src="../multimedia/icons/ilustaciones.ico">Ilustaciones</a></li>
-                                    <li class="submenu-opc submenu__opc-tipos"><a href="./fotoPruebaWallpaper.html"><img class="filterImg2" src="../multimedia/icons/wallpaper.ico">Wallpapers</a></li>
-                                    <li class="submenu-opc submenu__opc-tipos"><a href=""><img class="filterImg2" src="../multimedia/icons/camara.ico">Fotos</a></li>
-                                    <li class="submenu-opc submenu__opc-tipos"><a href=""><img class="filterImg2" src="../multimedia/icons/vector.ico">Vectores</a></li>
-                                    <li class="submenu-opc submenu__opc-tipos gif"><a href=""><img class="filterImg2" src="../multimedia/icons/gif.ico">Gifs</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos"><a data-opcion="ilustracion" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="ilustracion" onclick="enviarOpcionSeleccionada(event)" class="filterImg2" src="../multimedia/icons/ilustaciones.ico">Ilustaciones</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos"><a data-opcion="wallpaper" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="wallpaper" onclick="enviarOpcionSeleccionada(event)" class="filterImg2" src="../multimedia/icons/wallpaper.ico">Wallpapers</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos"><a data-opcion="foto" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="foto" onclick="enviarOpcionSeleccionada(event)" class="filterImg2" src="../multimedia/icons/camara.ico">Fotos</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos"><a data-opcion="vector" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="vector" onclick="enviarOpcionSeleccionada(event)" class="filterImg2" src="../multimedia/icons/vector.ico">Vectores</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos gif"><a data-opcion="gif" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="gif" onclick="enviarOpcionSeleccionada(event)" class="filterImg2" src="../multimedia/icons/gif.ico">Gifs</a></li>
                                 </div>
                             </ul>   
                         </li>
@@ -131,16 +133,43 @@
                             <a>Color<img src="../multimedia/icons/arrow-down.ico" alt="" class="arrow"></a>
                             <ul class="tipos__menu__conf-coloresul">
                                 <div class="menu__opciones-submenu1 menu__tipos-submenu menu__tipos-colores">
-                                    <li class="submenu__opc-colores rojo"><a href=""></a></li>
-                                    <li class="submenu__opc-colores naranja"><a href=""></a></li>
-                                    <li class="submenu__opc-colores amarillo"><a href=""></a></li>
-                                    <li class="submenu__opc-colores verde"><a href=""></a></li>
-                                    <li class="submenu__opc-colores celeste"><a href=""></a></li>
-                                    <li class="submenu__opc-colores azul"><a href=""></a></li>
-                                    <li class="submenu__opc-colores violeta"><a href=""></a></li>
-                                    <li class="submenu__opc-colores rosado"><a href=""></a></li>
-                                    <li class="submenu__opc-colores marron"><a href=""></a></li>
-                                    <li class="submenu__opc-colores negro"><a href=""></a></li>
+                                    <li class="submenu__opc-colores rojo" data-opcion="rojo" onclick="enviarOpcionSeleccionada(event)"></li>
+                                    <li class="submenu__opc-colores naranja" data-opcion="naranja" onclick="enviarOpcionSeleccionada(event)"></li>
+                                    <li class="submenu__opc-colores amarillo" data-opcion="amarillo" onclick="enviarOpcionSeleccionada(event)"></li>
+                                    <li class="submenu__opc-colores verde" data-opcion="verde" onclick="enviarOpcionSeleccionada(event)"></li>
+                                    <li class="submenu__opc-colores blanco" data-opcion="blanco" onclick="enviarOpcionSeleccionada(event)"></li>
+                                    <li class="submenu__opc-colores azul" data-opcion="azul" onclick="enviarOpcionSeleccionada(event)"></li>
+                                    <li class="submenu__opc-colores morado" data-opcion="morado" onclick="enviarOpcionSeleccionada(event)"></li>
+                                    <li class="submenu__opc-colores rosado" data-opcion="rosado" onclick="enviarOpcionSeleccionada(event)"></li>
+                                    <li class="submenu__opc-colores marron" data-opcion="marron" onclick="enviarOpcionSeleccionada(event)"></li>
+                                    <li class="submenu__opc-colores negro" data-opcion="negro" onclick="enviarOpcionSeleccionada(event)"></li>
+                                </div>
+                            </ul>   
+                        </li>
+                    </nav>
+                    <nav class="tipos-opc clave-opc">
+                        <li class="tipos__menu-conf menu__variasopciones-container">
+                            <a>Clave<img src="../multimedia/icons/arrow-down.ico" alt="" class="arrow"></a>
+                            <ul>
+                                <div class="menu__opciones-submenu1 menu__tipos-submenu menu-variasopciones">
+									<div>
+										<li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="personas" onclick="enviarOpcionSeleccionada(event)">Personas</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="animales" onclick="enviarOpcionSeleccionada(event)">Animales</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="cocina" onclick="enviarOpcionSeleccionada(event)">Cocina</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="videojuegos" onclick="enviarOpcionSeleccionada(event)">Video juegos</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="paisajes" onclick="enviarOpcionSeleccionada(event)">Paisajes</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="edificios" onclick="enviarOpcionSeleccionada(event)">Edificios</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="transporte" onclick="enviarOpcionSeleccionada(event)">Transporte</a></li>										
+									</div>
+                                    
+                                    <div>
+										<li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="educacion" onclick="enviarOpcionSeleccionada(event)">Educación</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="tecnologia" onclick="enviarOpcionSeleccionada(event)">Tecnología</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="gatos" onclick="enviarOpcionSeleccionada(event)">Gatos</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="perros" onclick="enviarOpcionSeleccionada(event)">Perros</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="naturaleza" onclick="enviarOpcionSeleccionada(event)">Naturaleza</a></li>
+                                    <li class="submenu-opc submenu__opc-tipos submenu__opc-claves"><a data-opcion="comida" onclick="enviarOpcionSeleccionada(event)">Comida</a></li>
+									</div>
                                 </div>
                             </ul>   
                         </li>
@@ -176,6 +205,17 @@
                     </nav>
                 </div>    
             </div>
+        </div>
+    </div>
+    <div class="select__filtros-container">
+        <div th:each="filtro : ${filtros}">
+            <form th:action="@{/galeria/eliminar-filtro}" method="post">
+                <div class="form_button-container">
+                    <p style="text-transform: capitalize;" class="filtro-p" th:text="${filtro}"></p>
+                    <input type="hidden" name="filtro" th:value="${filtro}"/>
+                    <button type="submit"><img src="../multimedia/icons/x.png"></button>
+                </div>
+            </form>
         </div>
     </div>
     <div class="galeria-container">

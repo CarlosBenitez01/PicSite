@@ -14,6 +14,7 @@
 </head>
 
 <body>
+	<script th:src="@{/js/funciones.js}"></script>
 	<header>
 		<nav class="menu__container">
 			<ul class="menu__container-ul">
@@ -25,17 +26,17 @@
 				<li class="opc menu__opciones-list1">
 					<a class="exp">Explorar</a>
 					<ul>
+						<!--
+						<form th:action="@{/perfil}">
+								<button type="submit"><div class="submenu-opc"><a><img class="filterImg" src="../multimedia/icons/ilustaciones.ico"><p name="ilustracion">Ilustraciones</p></a></div></button>
+							</form>
+						-->
 						<div class="menu__opciones-submenu1">
-							<li class="submenu-opc"><a href=""><img class="filterImg"
-										src="../multimedia/icons/ilustaciones.ico">Ilustaciones</a></li>
-							<li class="submenu-opc"><a href="./fotoPruebaWallpaper.html"><img class="filterImg"
-										src="../multimedia/icons/wallpaper.ico">Wallpapers</a></li>
-							<li class="submenu-opc"><a href=""><img class="filterImg"
-										src="../multimedia/icons/camara.ico">Fotos</a></li>
-							<li class="submenu-opc"><a href=""><img class="filterImg"
-										src="../multimedia/icons/vector.ico">Vectores</a></li>
-							<li class="submenu-opc gif"><a href=""><img class="filterImg"
-										src="../multimedia/icons/gif.ico">Gifs</a></li>
+							 <li class="submenu-opc"><a data-opcion="ilustracion" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="ilustracion" onclick="enviarOpcionSeleccionada(event)" class="filterImg" src="../multimedia/icons/ilustaciones.ico">Ilustraciones</a></li>
+							 <li class="submenu-opc"><a data-opcion="wallpaper" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="wallpaper" onclick="enviarOpcionSeleccionada(event)" class="filterImg" src="../multimedia/icons/wallpaper.ico">Wallpapers</a></li>
+							 <li class="submenu-opc"><a data-opcion="foto" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="foto" onclick="enviarOpcionSeleccionada(event)" class="filterImg" src="../multimedia/icons/camara.ico">Fotos</a></li>
+							 <li class="submenu-opc"><a data-opcion="vector" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="vector" onclick="enviarOpcionSeleccionada(event)" class="filterImg"  src="../multimedia/icons/vector.ico">Vectores</a></li>
+							 <li class="submenu-opc gif"><a data-opcion="gif" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="gif" onclick="enviarOpcionSeleccionada(event)" class="filterImg" src="../multimedia/icons/gif.ico">Gifs</a></li>
 						</div>
 					</ul>
 				</li>
@@ -105,26 +106,26 @@
 				<nav class="nav-list">
 					<nav-ul>
 						<p>Ir a:</p>
-						<li class="nav__ul-li"><a href="" class="nav__ul__li-a">Ilustaciones,</a></li>
-						<li class="nav__ul-li"><a href="" class="nav__ul__li-a">wallpapers,</a></li>
-						<li class="nav__ul-li"><a href="" class="nav__ul__li-a">Fotos,</a></li>
-						<li class="nav__ul-li"><a href="" class="nav__ul__li-a">Vectores,</a></li>
-						<li class="nav__ul-li"><a href="" class="nav__ul__li-a">Gifs.</a></li>
+						<li class="nav__ul-li"><a data-opcion="ilustracion" onclick="enviarOpcionSeleccionada(event)" class="nav__ul__li-a">Ilustaciones,</a></li>
+						<li class="nav__ul-li"><a data-opcion="wallpaper" onclick="enviarOpcionSeleccionada(event)" class="nav__ul__li-a">wallpapers,</a></li>
+						<li class="nav__ul-li"><a data-opcion="foto" onclick="enviarOpcionSeleccionada(event)" class="nav__ul__li-a">Fotos,</a></li>
+						<li class="nav__ul-li"><a data-opcion="vector" onclick="enviarOpcionSeleccionada(event)" class="nav__ul__li-a">Vectores,</a></li>
+						<li class="nav__ul-li"><a data-opcion="gif" onclick="enviarOpcionSeleccionada(event)" class="nav__ul__li-a">Gifs.</a></li>
 					</nav-ul>
 				</nav>
 			</div>
 		</div>
 		<div class="menu__opciones-container">
 			<div class="menu__opciones-content">
-				<li class="opcion"><a href=""><img class="filterImg2"
+				<li class="opcion"><a data-opcion="ilustracion" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="ilustracion" onclick="enviarOpcionSeleccionada(event)" class="filterImg2"
 							src="../multimedia/icons/ilustaciones.ico">Ilustaciones</a></li>
-				<li class="opcion"><a href=""><img class="filterImg2"
+				<li class="opcion"><a data-opcion="wallpaper" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="wallpaper" onclick="enviarOpcionSeleccionada(event)" class="filterImg2"
 							src="../multimedia/icons/wallpaper.ico">Wallpapers</a></li>
-				<li class="opcion"><a href=""><img class="filterImg2" src="../multimedia/icons/camara.ico">Fotos</a>
+				<li class="opcion"><a data-opcion="foto" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="foto" onclick="enviarOpcionSeleccionada(event)" class="filterImg2" src="../multimedia/icons/camara.ico">Fotos</a>
 				</li>
-				<li class="opcion"><a href=""><img class="filterImg2" src="../multimedia/icons/vector.ico">Vectores</a>
+				<li class="opcion"><a data-opcion="vector" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="vector" onclick="enviarOpcionSeleccionada(event)" class="filterImg2" src="../multimedia/icons/vector.ico">Vectores</a>
 				</li>
-				<li class="opcion"><a href=""><img class="filterImg2" src="../multimedia/icons/gif.ico">Gifs</a></li>
+				<li class="opcion"><a data-opcion="gif" onclick="enviarOpcionSeleccionada(event)"><img data-opcion="gif" onclick="enviarOpcionSeleccionada(event)" class="filterImg2" src="../multimedia/icons/gif.ico">Gifs</a></li>
 			</div>
 		</div>
 		<div class="galeria-container">

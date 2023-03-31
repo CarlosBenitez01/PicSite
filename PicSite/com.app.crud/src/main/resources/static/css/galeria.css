@@ -17,8 +17,8 @@
 .menu__container{
     display: flex;
     height: 80px;
-    justify-content: space-between;
     padding: 0 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -35,6 +35,9 @@ ul, li{
     justify-content: center;
 }
 
+.menu__container-ul a{
+    height: 100%;
+}
 
 .menu__logo{
     height: 80%;
@@ -75,11 +78,6 @@ a{
 .opc:hover{
     color: rgb(69, 69, 69);
     cursor: pointer;
-}
-
-li a{
-    display: block;
-    
 }
 
 .opc-log{
@@ -242,6 +240,7 @@ li a{
     /*border-bottom: 1px solid #ffffff1e;*/
     border-radius: 15px;
     transition: .3s;
+    width: 100%;
 }
 
 .nombre-usuario{
@@ -309,56 +308,58 @@ li a{
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
 }
 
-    /*menu*/
+/*Buscador*/
 
-    .buscador__container-center{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 35px;
-    }
 
-    .buscador::placeholder{
-        font-size: 15px;
-        color: rgb(98, 98, 98);
-    }
+.buscador__container-center{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 35px;
+}
 
-    .filterImg-buscadorico{
-        position: absolute;
-        width: 37px;
-        height: 37px;
-        filter: invert(42%) sepia(0%) saturate(2746%) hue-rotate(333deg) brightness(90%) contrast(92%);
-    }
+.buscador::placeholder{
+    font-size: 15px;
+    color: rgb(98, 98, 98);
+}
 
-    .buscador-container{
-        height: 50px;
-        width: 100%;
-        position: relative;
-    }
+.filterImg-buscadorico{
+    position: absolute;
+    width: 37px;
+    height: 37px;
+    filter: invert(42%) sepia(0%) saturate(2746%) hue-rotate(333deg) brightness(90%) contrast(92%);
+}
 
-    .buscador-container img{
-        position: absolute;    
-        height: 40px;
-        width: 40px;
-        right: 10px;
-        top: 5px;
-        border-radius: 15px;
-    }
+.buscador-container{
+    height: 50px;
+    width: 100%;
+    position: relative;
+}
 
-    .buscador{
-        width: 100%;
-        height: 100%;
-        border-radius: 15px;
-        border: none;
-        outline: none;
-        color: rgb(98, 98, 98);
-        font-size: 15px;
-        font-weight: bold;
-        padding-left: 50px;
-        background-color: rgba(185, 185, 185, 0.176);
-    }
+.buscador-container img{
+    position: absolute;    
+    height: 40px;
+    width: 40px;
+    right: 10px;
+    top: 5px;
+    border-radius: 15px;
+}
+
+.buscador{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    color: rgb(98, 98, 98);
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 50px;
+    background-color: rgba(185, 185, 185, 0.176);
+}
+
 
     /*---------------------------------Galeria tipos-------------------------------------*/
 
@@ -502,7 +503,12 @@ li a{
     .menu__tipos-colores > .submenu__opc-colores:hover{
         opacity: .7;
     }
-
+    /*-------------------Menu de claves--------------------*/
+    
+    .menu-variasopciones{
+		display: flex;	
+	}
+	
     /*------------colores---------------------*/
     .rojo{
         background-color: red;
@@ -520,15 +526,15 @@ li a{
         background-color: green;
     }
 
-    .celeste{
-        background-color: lightblue;
+    .blanco{
+        border:1px solid rgba(152, 152, 152, 0.600);
     }
 
     .azul{
         background-color: blue;
     }
 
-    .violeta{
+    .morado{
         background-color: violet;
     }
 
@@ -544,18 +550,65 @@ li a{
         background-color: black;
     }   
 
+	.select__filtros-container{
+        min-height: 70px;
+        width: 100%;
+        padding: 0 16px 0 16px;
+        margin-bottom: 45px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
 
-    /*/....././././././///////////////////*/
-    /*/....././././././///////////////////*/
-    /*/....././././././///////////////////*/
-    /*/....././././././///////////////////*/
-    /*/....././././././///////////////////*/
-    /*/....././././././///////////////////*/
-    /*/....././././././///////////////////*/
-    /*/....././././././///////////////////*/
-    /*/....././././././///////////////////*/
-    /*/....././././././///////////////////*/
-    /*----------------------------------Body-------------------------------------------*/
+    .select__filtros-container div{
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .select__filtros-container div form{
+        margin-right: 20px;
+    }
+
+    .form_button-container{
+        padding: 15px;
+        border: 1px solid rgb(136, 136, 136);
+        display: flex;
+        font-size: 17px;
+        border-radius: 50px;
+        transition: .3s;
+    }
+
+    .form_button-container:hover, .form_button-container:hover > .filtro-p{
+        border-color: rgb(69, 69, 69);
+        color: rgb(69, 69, 69);
+    }
+
+    .form_button-container button, .form_button-container button img{
+        height: 20px;
+        width: 20px;
+        border-radius: 50px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;   
+        transition: .3s;
+    }
+
+    .filtro-p{
+        color: rgb(136, 136, 136);
+        user-select: none;
+        font-weight: 900;
+        margin-right: 5px;
+        transition: .3s;
+    }
+
+    .form_button-container button img{
+        filter: invert(56%) sepia(8%) saturate(21%) hue-rotate(0deg) brightness(94%) contrast(89%);
+    }
+
+    .form_button-container:hover > button img{
+        filter: invert(23%) sepia(0%) saturate(1494%) hue-rotate(224deg) brightness(105%) contrast(88%);
+    }
 
     /*----------------------------------Galeria------------------------------------*/
 

@@ -43,8 +43,8 @@ public class Filtros {
 	@Column(name = "verde", columnDefinition = "BOOLEAN")
 	private Boolean verde;
 	
-	@Column(name = "celeste", columnDefinition = "BOOLEAN")
-	private Boolean celeste;
+	@Column(name = "blanco", columnDefinition = "BOOLEAN")
+	private Boolean blanco;
 	
 	@Column(name = "azul", columnDefinition = "BOOLEAN")
 	private Boolean azul;
@@ -119,7 +119,7 @@ public class Filtros {
 		this.naranja = false;
 		this.amarillo = false;
 		this.verde = false;
-		this.celeste = false;
+		this.blanco = false;
 		this.azul = false;
 		this.morado = false;
 		this.rosado = false;
@@ -140,9 +140,41 @@ public class Filtros {
 		this.comida = false;
 		this.imagen = imagen;
 	}
+	
+	public Filtros(String n) {
+		super();
+		this.ilustracion = false;
+		this.wallpaper = false;
+		this.foto = false;
+		this.vector = false;
+		this.gif = false;
+		this.rojo = false;
+		this.naranja = false;
+		this.amarillo = false;
+		this.verde = false;
+		this.blanco = false;
+		this.azul = false;
+		this.morado = false;
+		this.rosado = false;
+		this.marron = false;
+		this.negro = false;
+		this.personas = false;
+		this.animales = false;
+		this.cocina = false;
+		this.videojuegos = false;
+		this.paisajes = false;
+		this.edificios = false;
+		this.transporte = false;
+		this.educacion = false;
+		this.tecnologia = false;
+		this.gatos = false;
+		this.perros = false;
+		this.naturaleza = false;
+		this.comida = false;
+	}
 
 	public Filtros(Long id_filtro, Boolean ilustracion, Boolean wallpaper, Boolean foto, Boolean vector, Boolean gif,
-			Boolean rojo, Boolean naranja, Boolean amarillo, Boolean verde, Boolean celeste, Boolean azul,
+			Boolean rojo, Boolean naranja, Boolean amarillo, Boolean verde, Boolean blanco, Boolean azul,
 			Boolean morado, Boolean rosado, Boolean marron, Boolean negro, Boolean personas, Boolean animales,
 			Boolean cocina, Boolean videojuegos, Boolean paisajes, Boolean edificios, Boolean transporte,
 			Boolean educacion, Boolean tecnologia, Boolean gatos, Boolean perros, Boolean naturaleza, Boolean comida,
@@ -158,7 +190,7 @@ public class Filtros {
 		this.naranja = naranja;
 		this.amarillo = amarillo;
 		this.verde = verde;
-		this.celeste = celeste;
+		this.blanco = blanco;
 		this.azul = azul;
 		this.morado = morado;
 		this.rosado = rosado;
@@ -256,12 +288,12 @@ public class Filtros {
 		this.verde = verde;
 	}
 
-	public Boolean getCeleste() {
-		return celeste;
+	public Boolean getBlanco() {
+		return blanco;
 	}
 
-	public void setCeleste(Boolean celeste) {
-		this.celeste = celeste;
+	public void setBlanco(Boolean blanco) {
+		this.blanco = blanco;
 	}
 
 	public Boolean getAzul() {

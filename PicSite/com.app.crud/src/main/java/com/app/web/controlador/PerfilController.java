@@ -134,9 +134,15 @@ public class PerfilController {
 			return null;
 		}
 	}
-
+	
+	@GetMapping("/cambiarVariable")
+    public String cambiarVariable() {
+        UsuarioControlador.filtros.clear();
+        return "redirect:/perfil";
+    }
+	
 	public Usuario usuInfo;
-
+	
 	@GetMapping({ "/perfil", "/home/perfil", "/galeria/perfil" })
 	public String perfil(Model model) {
 		clearArrays();
@@ -315,7 +321,7 @@ public class PerfilController {
 			filtros.setVerde(true);
 			break;
 		case "celeste":
-			filtros.setCeleste(true);
+			filtros.setBlanco(true);
 			break;
 		case "azul":
 			filtros.setAzul(true);
